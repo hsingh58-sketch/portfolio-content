@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sentiment Platform - Product Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00A4EF 0%, #7FBA00 25%, #FFB900 50%, #F25022 100%);
+            color: white;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-badge {
+            display: inline-block;
+            background: white;
+            color: #1a1a1a;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+        
+        .header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        
+        .header .subtitle {
+            font-size: 24px;
+            color: #b8b8b8;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        
+        .impact-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            padding: 20px 30px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            min-width: 180px;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: #b8b8b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .award-banner {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a1a;
+            padding: 15px 30px;
+            margin-top: 30px;
+            display: inline-block;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .content {
+            padding: 60px;
+        }
+        
+        .section {
+            margin-bottom: 70px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #00A4EF;
+        }
+        
+        .section-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00A4EF 0%, #7FBA00 100%);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .section h2 {
+            font-size: 36px;
+            color: #000;
+            font-weight: 700;
+        }
+        
+        .section h3 {
+            font-size: 24px;
+            color: #1a1a1a;
+            margin: 30px 0 20px 0;
+            font-weight: 600;
+        }
+        
+        .section p {
+            color: #4a4a4a;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .problem-statement {
+            background: linear-gradient(135deg, #00A4EF 0%, #0078D4 100%);
+            color: white;
+            padding: 40px;
+            font-size: 18px;
+            line-height: 1.9;
+            border-left: 6px solid #FFB900;
+            margin: 30px 0;
+        }
+        
+        .problem-statement strong {
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #999;
+        }
+        
+        .insight-box {
+            background: #f8f8f8;
+            border-left: 4px solid #00A4EF;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .insight-box strong {
+            color: #00A4EF;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #F25022 0%, #FFB900 50%, #7FBA00 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: #00A4EF;
+            box-shadow: 0 10px 30px rgba(0,164,239,0.15);
+            transform: translateY(-5px);
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        
+        .tech-stack {
+            background: #fafafa;
+            padding: 40px;
+            margin: 30px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            border-color: #00A4EF;
+            box-shadow: 0 5px 15px rgba(0,164,239,0.2);
+        }
+        
+        .tech-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .tech-item h4 {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .tech-item p {
+            font-size: 13px;
+            color: #666;
+            margin: 0;
+        }
+        
+        .architecture-diagram {
+            background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+            color: white;
+            padding: 50px;
+            margin: 40px 0;
+        }
+        
+        .architecture-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        
+        .architecture-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .flow-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 35px;
+            font-size: 32px;
+            color: #666;
+        }
+        
+        .flow-step:last-child::after {
+            content: '';
+        }
+        
+        .flow-box {
+            background: rgba(255,255,255,0.15);
+            padding: 25px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            margin-bottom: 10px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .flow-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .flow-step h4 {
+            font-size: 16px;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .flow-step p {
+            font-size: 13px;
+            color: #b8b8b8;
+            margin: 0;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            border-color: #00A4EF;
+            box-shadow: 0 5px 20px rgba(0,164,239,0.2);
+        }
+        
+        .metric-value {
+            font-size: 42px;
+            font-weight: 700;
+            color: #00A4EF;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            font-size: 13px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #e0e0e0;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 45%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+            padding-right: 40px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: 55%;
+            text-align: left;
+            padding-left: 40px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #00A4EF;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px #00A4EF;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -50px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -50px;
+        }
+        
+        .timeline-content {
+            background: #f8f8f8;
+            padding: 25px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .timeline-content h4 {
+            font-size: 18px;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content .phase {
+            display: inline-block;
+            background: linear-gradient(135deg, #00A4EF 0%, #0078D4 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .feature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+        }
+        
+        .feature-table thead {
+            background: linear-gradient(135deg, #00A4EF 0%, #0078D4 100%);
+            color: white;
+        }
+        
+        .feature-table th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .feature-table td {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #4a4a4a;
+        }
+        
+        .feature-table tbody tr:hover {
+            background: #fafafa;
+        }
+        
+        .priority-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .priority-p0 {
+            background: #F25022;
+            color: white;
+        }
+        
+        .priority-p1 {
+            background: #FFB900;
+            color: white;
+        }
+        
+        .priority-p2 {
+            background: #7FBA00;
+            color: white;
+        }
+        
+        .impact-section {
+            background: linear-gradient(135deg, #0078D4 0%, #00A4EF 50%, #7FBA00 100%);
+            color: white;
+            padding: 60px;
+            margin: 50px 0;
+        }
+        
+        .impact-section h3 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-left: 4px solid white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .impact-card h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .impact-card p {
+            color: #b8b8b8;
+            margin: 0;
+            line-height: 1.7;
+        }
+        
+        .lessons-learned {
+            background: #f8f8f8;
+            padding: 40px;
+            margin: 40px 0;
+            border-left: 6px solid #00A4EF;
+        }
+        
+        .lessons-learned h3 {
+            margin-top: 0;
+        }
+        
+        .lessons-learned ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .lessons-learned li {
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+        
+        .lessons-learned li:last-child {
+            border-bottom: none;
+        }
+        
+        .lessons-learned li::before {
+            content: '▸';
+            color: #00A4EF;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 40px 60px;
+            text-align: center;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                margin-left: 40px !important;
+                text-align: left !important;
+                padding-left: 40px !important;
+                padding-right: 0 !important;
+            }
+            
+            .timeline-dot {
+                left: -30px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-badge">🤖 AI/ML • Government Tech</div>
+                <h1>AI Sentiment Analysis Platform</h1>
+                <p class="subtitle">Transforming Government Service Experience Through Emotion AI</p>
+                
+                <div class="impact-stats">
+                    <div class="stat-box">
+                        <span class="stat-value">1M+</span>
+                        <span class="stat-label">Daily Data Points</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value">90%</span>
+                        <span class="stat-label">Model Accuracy</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value">$10M</span>
+                        <span class="stat-label">Contract Secured</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-value">2020</span>
+                        <span class="stat-label">Launch Year</span>
+                    </div>
+                </div>
+                
+                <div class="award-banner">
+                    🏆 Peak Performer Award - Top 1% Company-Wide Recognition
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Executive Summary -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">01</div>
+                    <h2>Executive Summary</h2>
+                </div>
+                
+                <p>The AI Sentiment Analysis Platform is an enterprise-grade emotion intelligence system designed for a Middle Eastern government to measure and improve citizen satisfaction at government service centers. Using Microsoft Cognitive Services and computer vision, the platform processes facial expressions and body language in real-time to understand citizen sentiment during service interactions.</p>
+                
+                <div class="problem-statement">
+                    <strong>The Challenge</strong>
+                    Government service centers were experiencing declining citizen satisfaction scores but lacked objective, real-time data to understand pain points. Traditional feedback mechanisms (surveys, complaint forms) had low response rates (<5%) and were subject to bias. Leadership needed a non-intrusive, scalable solution to measure sentiment across hundreds of service centers and millions of annual interactions.
+                </div>
+                
+                <div class="insight-box">
+                    <strong>Strategic Context</strong>
+                    <p>As part of a national digital transformation initiative, the government aimed to improve citizen experience to match private sector standards. With citizen trust in government services at historic lows, leadership needed data-driven insights to prioritize improvements and demonstrate accountability.</p>
+                </div>
+            </div>
+            
+            <!-- Problem & Opportunity -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">02</div>
+                    <h2>Problem & Opportunity</h2>
+                </div>
+                
+                <h3>Key Problems Identified</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>❌ Measurement Gap</h4>
+                        <p><strong>Issue:</strong> No objective way to measure citizen sentiment during service interactions. Exit surveys had <5% response rate and were heavily biased toward extreme experiences.</p>
+                        <p><strong>Impact:</strong> Leadership making decisions based on incomplete, biased feedback. Unable to identify systemic issues vs. isolated incidents.</p>
+                    </div>
+                    <div class="card">
+                        <h4>⏱️ Delayed Response</h4>
+                        <p><strong>Issue:</strong> Feedback came days or weeks after the interaction, making it impossible to intervene in real-time or understand context.</p>
+                        <p><strong>Impact:</strong> Service issues compounded before being addressed. Staff had no immediate feedback loop for improvement.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📍 Blind Spots</h4>
+                        <p><strong>Issue:</strong> Certain demographics (elderly, less educated, non-native speakers) rarely provided feedback, creating data gaps.</p>
+                        <p><strong>Impact:</strong> Improvements benefited vocal groups while underserved populations remained invisible in data.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🔄 No Process Insights</h4>
+                        <p><strong>Issue:</strong> Couldn't correlate satisfaction with specific service steps (check-in, waiting, service delivery, checkout).</p>
+                        <p><strong>Impact:</strong> Couldn't pinpoint where experience broke down in the service journey. Resources allocated ineffectively.</p>
+                    </div>
+                </div>
+                
+                <h3>Market Opportunity</h3>
+                <div class="insight-box">
+                    <strong>Why This Mattered</strong>
+                    <p><strong>Government Mandate:</strong> National Vision 2030 goals required measurable improvements in citizen satisfaction (target: 85% satisfaction by 2025).</p>
+                    <p><strong>Budget Justification:</strong> $500M+ annual budget for service center operations needed ROI measurement and optimization data.</p>
+                    <p><strong>Competitive Pressure:</strong> Citizens comparing government services to Amazon, Uber, and other private sector experiences. Gap creating political pressure.</p>
+                    <p><strong>Technology Readiness:</strong> Advances in computer vision and emotion AI made real-time sentiment analysis feasible and affordable at scale.</p>
+                </div>
+            </div>
+            
+            <!-- Solution Overview -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">03</div>
+                    <h2>Solution Overview</h2>
+                </div>
+                
+                <h3>Product Vision</h3>
+                <p>Create a privacy-respecting, real-time sentiment monitoring system that provides government service centers with objective, actionable insights to improve citizen experience at scale.</p>
+                
+                <h3>Core Capabilities</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>📹 Real-Time Emotion Detection</h4>
+                        <p>Computer vision cameras at key touchpoints (entrance, waiting area, service counter, exit) capture facial expressions. Microsoft Cognitive Services Face API analyzes emotions: happiness, sadness, anger, frustration, neutral.</p>
+                        <p><strong>Privacy:</strong> No facial recognition or identity capture. Only emotion metadata stored.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📊 Journey-Based Analysis</h4>
+                        <p>Track sentiment changes across the service journey. Identify exactly where experience degrades (e.g., frustration spikes in waiting area, anger at service counter).</p>
+                        <p><strong>Value:</strong> Pinpoint specific process bottlenecks rather than aggregate scores.</p>
+                    </div>
+                    <div class="card">
+                        <h4>⚡ Real-Time Alerts</h4>
+                        <p>When negative sentiment detected (anger, extreme frustration), system alerts supervisor for immediate intervention. Prevents escalation and demonstrates responsiveness.</p>
+                        <p><strong>SLA:</strong> Alert within 30 seconds of detection.</p>
+                    </div>
+                    <div class="card">
+                        <h4>📈 Analytics Dashboard</h4>
+                        <p>Manager dashboard with: sentiment trends over time, comparison across locations, correlation with wait times/staff performance, demographic analysis (age groups, peak hours).</p>
+                        <p><strong>Insights:</strong> Data-driven staffing, training, and process improvements.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🎯 Predictive Models</h4>
+                        <p>ML models predict peak dissatisfaction periods based on historical data, enabling proactive staffing and queue management.</p>
+                        <p><strong>Accuracy:</strong> 85% prediction accuracy for high-dissatisfaction periods.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🔗 Integration Layer</h4>
+                        <p>APIs to integrate with existing queue management, CRM, and workforce management systems. Sentiment data enriches operational dashboards.</p>
+                        <p><strong>Standards:</strong> REST APIs, real-time webhooks, export to data lakes.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Architecture -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">04</div>
+                    <h2>Technical Architecture</h2>
+                </div>
+                
+                <div class="architecture-diagram">
+                    <div class="architecture-title">System Architecture Flow</div>
+                    <div class="architecture-flow">
+                        <div class="flow-step">
+                            <div class="flow-box">
+                                <div class="flow-icon">📹</div>
+                                <h4>Video Capture</h4>
+                            </div>
+                            <p>IP Cameras at touchpoints</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-box">
+                                <div class="flow-icon">🎯</div>
+                                <h4>Face Detection</h4>
+                            </div>
+                            <p>Azure Cognitive Services</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-box">
+                                <div class="flow-icon">🧠</div>
+                                <h4>Emotion Analysis</h4>
+                            </div>
+                            <p>ML Model Processing</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-box">
+                                <div class="flow-icon">💾</div>
+                                <h4>Data Pipeline</h4>
+                            </div>
+                            <p>Real-time + Batch Storage</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-box">
+                                <div class="flow-icon">📊</div>
+                                <h4>Analytics</h4>
+                            </div>
+                            <p>Dashboards & Alerts</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Technology Stack</h3>
+                <div class="tech-stack">
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <div class="tech-icon">🧠</div>
+                            <h4>Microsoft Azure Cognitive Services</h4>
+                            <p>Face API, Emotion Detection, Computer Vision</p>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">☁️</div>
+                            <h4>Azure Cloud Platform</h4>
+                            <p>Compute, Storage, IoT Hub, ML Services</p>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">📹</div>
+                            <h4>Edge Computing</h4>
+                            <p>Local processing for privacy, reduced latency</p>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">💾</div>
+                            <h4>Azure Data Lake</h4>
+                            <p>Centralized data storage and analytics</p>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">⚡</div>
+                            <h4>Azure Stream Analytics</h4>
+                            <p>Real-time data processing and alerting</p>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-icon">📊</div>
+                            <h4>Power BI</h4>
+                            <p>Interactive dashboards and reporting</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Key Technical Decisions</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Edge vs. Cloud Processing</h4>
+                        <p><strong>Decision:</strong> Hybrid approach - edge computing for initial face detection, cloud for emotion analysis and storage.</p>
+                        <p><strong>Rationale:</strong> Reduces bandwidth (90% reduction), ensures privacy (raw video never leaves premises), maintains sub-second latency while leveraging cloud ML power.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Microsoft vs. Custom ML Models</h4>
+                        <p><strong>Decision:</strong> Use Microsoft Cognitive Services for MVP, custom models for optimization post-launch.</p>
+                        <p><strong>Rationale:</strong
